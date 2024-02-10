@@ -1,0 +1,20 @@
+services:
+  - name: app
+    env: docker
+    image: jc21/nginx-proxy-manager:latest
+    envVars:
+      - key: VIRTUAL_PORT
+        value: '80'
+      - key: VIRTUAL_HOST
+        value: 'your-render-subdomain.onrender.com'
+      - key: LETSENCRYPT_HOST
+        value: 'your-render-subdomain.onrender.com'
+    ports:
+      - 80
+      - 81
+      - 443
+    volumes:
+      - name: data
+        path: /data
+      - name: letsencrypt
+        path: /etc/letsencrypt
